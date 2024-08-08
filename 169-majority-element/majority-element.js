@@ -17,12 +17,10 @@ var majorityElement = function(nums) {
             countMap.set(nums[i],1)
         }
     }
-    let elm;
-    let max = 0;
+    
     for([key,value] of countMap) {
-       if(value > max) {
-           max = value;
-           elm= key;
+       if(value > nums.length/2) {
+           return key;
        }
     }
 
