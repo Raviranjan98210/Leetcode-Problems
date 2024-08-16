@@ -10,7 +10,6 @@ var spiralOrder = function(matrix) {
     let top = 0;
     let right = m-1
     let bottom = n-1;
-   
    let spiral=[]
    while(left <= right && top <= bottom) {
     // From left to right (i.e left constant here)
