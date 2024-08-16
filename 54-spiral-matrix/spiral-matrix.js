@@ -17,31 +17,24 @@ var spiralOrder = function(matrix) {
         for(let i=top; i<=right; i++) {
             spiral.push(matrix[left][i])
         }
-        console.log(spiral)
         top++;
     // From top to bottom (i.e right constant here)
         for(let i=top; i<=bottom; i++) {
             spiral.push(matrix[i][right])
         }
-        console.log(spiral)
         right--;
-
     // From Right to left (i.e bottom constant here)
     if(top<=bottom) {
         for(let i= right; i>=left; i--) {
             spiral.push(matrix[bottom][i]) //[2][1]
         }
-        console.log(spiral)
         bottom--;
     }
-       
-
     // From bottom to top
     if(left<=right) {
         for(let i=bottom; i>= top; i--) {
             spiral.push(matrix[i][left]) //1
         }
-        console.log(spiral)
         left++;
     }
        
