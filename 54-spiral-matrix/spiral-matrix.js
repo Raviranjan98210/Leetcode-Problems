@@ -26,7 +26,7 @@ var spiralOrder = function(matrix) {
     // From Right to left (i.e bottom constant here)
     if(top<=bottom) {
         for(let i= right; i>=left; i--) {
-            spiral.push(matrix[bottom][i]) //[2][1]
+            spiral.push(matrix[bottom][i]) 
         }
         bottom--;
     }
