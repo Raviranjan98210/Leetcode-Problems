@@ -17,7 +17,6 @@ var generate = function(numRows) {
     const pascal = []
     for(let i=1; i<=numRows;i++) {
      const  row = genRow(i)
-     console.log(row)
      pascal.push(row)
     }
     return pascal;
