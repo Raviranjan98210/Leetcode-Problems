@@ -20,43 +20,47 @@ var majorityElement = function(nums) {
 
 
 //    Optimal
-    let cnt1 = 0, cnt2 = 0; // counts
-    let el1 = -Infinity; // element 1
-    let el2 = -Infinity; // element 2
+let count1=0;
+let elm1= -Infinity;
+let count2 = 0;
+let elm2 = -Infinity;
 
-    // applying the Extended Boyer Moore's numsoting Algorithm:
-    for (let i = 0; i < n; i++) {
-        if (cnt1 === 0 && el2 !== nums[i]) {
-            cnt1 = 1;
-            el1 = nums[i];
-        }
-        else if (cnt2 === 0 && el1 !== nums[i]) {
-            cnt2 = 1;
-            el2 = nums[i];
-        }
-        else if (nums[i] === el1) cnt1++;
-        else if (nums[i] === el2) cnt2++;
-        else {
-            cnt1--, cnt2--;
+
+    for(let i=0; i<n; i++) {
+        if(count1 === 0 && nums[i] !== elm2) {
+            count1 = 1;
+            elm1 = nums[i]
+        }else if(count2 === 0 && nums[i] !== elm1) {
+            count2 = 1;
+            elm2 = nums[i]
+        } else if(nums[i] === elm1){
+            count1++;
+        }else if( nums[i] === elm2) {
+            count2++
+        }else {
+            count1--;
+            count2--;
         }
     }
 
-    let ls = []; // list of answers
-
-    // Manually check if the stored elements in
-    // el1 and el2 are the majority elements:
-    cnt1 = 0, cnt2 = 0;
-    for (let i = 0; i < n; i++) {
-        if (nums[i] === el1) cnt1++;
-        if (nums[i] === el2) cnt2++;
+    let cont1= 0;
+    let cont2 =0;
+    const result = []
+    for(let i=0;i<n;i++){
+        if(elm1===nums[i]) cont1++
+        if(elm2===nums[i]) cont2++
     }
 
-    let mini = Math.floor(n / 3) + 1;
-    if (cnt1 >= mini) ls.push(el1);
-    if (cnt2 >= mini) ls.push(el2);
-
-
-    ls.sort(); // TC --> O(2*log2) ~ O(1);
-
-    return ls;
+    if(cont1 >= (Math.floor(n/3))+1) {
+        result.push(elm1)
+    }
+    if(cont2 >= (Math.floor(n/3))+1) {
+        result.push(elm2)
+    }
+    return result;
 };
+
+
+
+
+
