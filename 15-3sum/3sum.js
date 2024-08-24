@@ -53,36 +53,66 @@ var threeSum = function (nums) {
     // }
     // return result;
 
-    let st = new Set();
+    // let st = new Set();
+    // const n = nums.length;
+    // let ans = [];
+    // // check if all zero then return [0,0,0]
+    // let isZero = true
+    // for(let i=0;i<n;i++) {
+    //     if(nums[i] !==0){
+    //         isZero = false
+    //         break;
+    //     }
+    // }
+    // if(isZero) return [[0,0,0]];
+    // for (let i = 0; i < n; i++) {
+    //     let hashset = new Set();
+    //     for (let j = i + 1; j < n; j++) {
+    //         //Calculate the 3rd element:
+    //         let third = -(nums[i] + nums[j]);
+
+    //         //Find the element in the set:
+    //         if (hashset.has(third)) {
+    //             let temp = [nums[i], nums[j], third];
+    //             temp.sort((a, b) => a - b);
+    //             ans.push(temp);
+    //         }
+    //         hashset.add(nums[j]);
+    //     }
+    // }
+
+    // //store the set in the answer:
+    // let set  = new Set(ans.map(JSON.stringify));
+    // ans = Array.from(set).map(JSON.parse);
+    // return ans;
+
+    // Optimal solution using pointers
+
     const n = nums.length;
-    let ans = [];
-    // check if all zero then return [0,0,0]
-    let isZero = true
-    for(let i=0;i<n;i++) {
-        if(nums[i] !==0){
-            isZero = false
-            break;
-        }
-    }
-    if(isZero) return [[0,0,0]];
-    for (let i = 0; i < n; i++) {
-        let hashset = new Set();
-        for (let j = i + 1; j < n; j++) {
-            //Calculate the 3rd element:
-            let third = -(nums[i] + nums[j]);
 
-            //Find the element in the set:
-            if (hashset.has(third)) {
-                let temp = [nums[i], nums[j], third];
-                temp.sort((a, b) => a - b);
-                ans.push(temp);
+    nums.sort((a,b)=> a-b)
+    console.log(nums)
+    let res = []
+    for(let left=0;left<n;left++){
+        if(left >0 && nums[left] === nums[left-1]) continue;
+        console.log(nums[left],left)
+         let  mid = left+1;
+         let  last = n-1;
+        while(mid<last){
+            let sum = nums[left]+nums[mid]+nums[last]
+            if(sum<0){
+                mid++;
+            }else if(sum>0){
+                last--;
+            }else {
+                res.push([nums[left],nums[mid],nums[last]])
+                mid++;
+                last--;
+                while(mid<last && nums[mid] === nums[mid-1]) mid++;
+                while(mid<last && nums[last] === nums[last+1]) last--;
             }
-            hashset.add(nums[j]);
         }
     }
-
-    //store the set in the answer:
-    let set  = new Set(ans.map(JSON.stringify));
-    ans = Array.from(set).map(JSON.parse);
-    return ans;
+    // console.log(res)
+    return res;
 }
