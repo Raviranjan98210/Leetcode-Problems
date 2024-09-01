@@ -21,6 +21,8 @@ var merge = function(intervals) {
         for(let j = i+1; j < n; j++) {
             if(end >= intervals[j][0]){
                 end = Math.max(end,intervals[j][1])
+            }else {
+                break;
             }
         }
 
