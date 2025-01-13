@@ -10,15 +10,20 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    let prev = null;
-    let currentNode = head;
-    while(currentNode) {
-     let nextNode = currentNode.next
-     currentNode.next = prev;
-     prev = currentNode;
-     currentNode = nextNode
-    }
-   return prev;
+ let prev = null;
+ let current = head;
+ let next = current;
+ while(next){
+     next = current.next
+    current.next = prev;
+    prev = current
+    current = next;
+ }
+
+ head = prev;
+ return head;
+ //1 -> 2 -> 3 -> 4 -> 5
+
 };
 
 
