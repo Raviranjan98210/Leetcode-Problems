@@ -3,31 +3,23 @@
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-    // let preNum = nums[0];
-    // const temp = [preNum]
-    // for(let i = 1;i<nums.length ; i++ ) {
-    //     if(nums[i] !== preNum) {
-    //         preNum = nums[i];
-    //         temp.push(nums[i])
-    //     }
-    // }
-    // for(let i=0; i<temp.length; i++) {
-    //     nums[i]=temp[i]
-    // }
-    // return temp.length
-
-
-    //-------------- Optimal approach ------------
-
-     let k = 1;
-
-
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] !== nums[i - 1]) {
-      nums[k] = nums[i];
-      k++;
+    const l = nums.length;
+    let j = 1;
+    let i = 0; 
+    const arr = []
+    while(i < l ) {
+        if(nums[i]=== nums[j]) {
+            j++;
+        }else {
+          arr.push(nums[i])
+          i=j;
+          j++;
+        }
     }
-  }
 
-  return k;
+    for(let i=0; i<arr.length ; i++) {
+            nums[i]= arr[i]
+    }
+    nums.splice(arr.length)
+
 };
