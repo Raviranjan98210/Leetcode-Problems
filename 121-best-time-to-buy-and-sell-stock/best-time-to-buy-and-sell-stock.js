@@ -3,14 +3,18 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    if(prices.length===1) return 0
-
-    let maxProf=0;
-    let mini = prices[0];
-    for(let i=1;i<prices.length;i++) {
-        const cost = prices[i]-mini;
-        maxProf = Math.max(maxProf,cost)
-        mini = Math.min(mini,prices[i])
+   
+   let maxProfit = 0;
+   let min = prices[0];
+   for(let i = 1; i<prices.length; i++){
+    const profit = prices[i]-min
+    if(profit  > maxProfit){
+        maxProfit = profit
     }
-    return maxProf;
+    if(prices[i]<min){
+        min = prices[i]
+    }
+   }
+   return maxProfit;
+
 };
