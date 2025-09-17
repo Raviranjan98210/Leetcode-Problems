@@ -7,9 +7,24 @@
  */
 var merge = function(nums1, m, nums2, n) {
     // Approach-1 Brute Force
-    for(let i = m; i< m+n; i++) {
-        nums1[i] = nums2[i-m]
-    }
-    nums1.sort((a,b)=> a-b)
+    // for(let i = m; i< m+n; i++) {
+    //     nums1[i] = nums2[i-m]
+    // }
+    // nums1.sort((a,b)=> a-b)
 
+    //Approach -2
+
+    const nums1Copy = nums1.slice(0,m)
+    let p1=0
+    let p2 = 0
+
+    for(let i=0; i<m+n; i++) {
+        if( p2 >= n || (p1 < m && nums1Copy[p1]< nums2[p2])) {
+            nums1[i] = nums1Copy[p1]
+            p1++
+        }else {
+            nums1[i] = nums2[p2]
+            p2++
+        }
+    }
 };
