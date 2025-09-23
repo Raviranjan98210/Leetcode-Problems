@@ -3,9 +3,14 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-   let xor=0;
-   for(let i=0;i<nums.length;i++) {
-     xor = xor^nums[i]
-   }
-    return xor;
+    //   Brute Force
+    const cmap = new Map();
+    for(let i=0; i < nums.length; i++) {
+        cmap.set(nums[i], (cmap.get(nums[i]) || 0 ) + 1  )
+    }
+    for(let i=0; i < nums.length; i++) {
+       if( cmap.get(nums[i]) === 1) {
+            return nums[i]
+       }
+    }
 };
