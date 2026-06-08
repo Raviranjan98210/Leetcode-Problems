@@ -27,18 +27,12 @@ var mergeTwoLists = function (list1, list2) {
             list2 = list2.next
         }
     }
+    if(list1){
+        l3.next = list1
+    }
+    if(list2){
+        l3.next = list2
+    }
 
-    while (list1) {
-        let newNode = new ListNode(list1.val)
-        l3.next = newNode
-        l3 = l3.next
-        list1 = list1.next
-    }
-    while (list2) {
-        let newNode = new ListNode(list2.val)
-        l3.next = newNode
-        l3 = l3.next
-        list2 = list2.next
-    }
     return l3Head.next
 };
