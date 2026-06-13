@@ -4,10 +4,19 @@
  * @return {number}
  */
 var numJewelsInStones = function(jewels, stones) {
-    // using js built in function
+    // brute force
     let count = 0 ;
-    for(let i=0; i< stones.length; i++){
-        if(jewels.includes(stones[i])) count++
+    // for(let i=0; i< stones.length; i++){
+    //     if(jewels.includes(stones[i])) count++
+    // }
+    // return count
+
+
+    // Optimal solution
+
+    const j = new Set(jewels)
+    for(let i=0; i<stones.length;i++){
+        if(j.has(stones[i])) count++
     }
     return count
     
