@@ -15,6 +15,4 @@ var longestCommonPrefix = function(s) {
         cp += ch
     }
     return cp
-
-
 };
