@@ -10,7 +10,7 @@ var groupAnagrams = function(s) {
         if(!m.has(sorted)){
             m.set(sorted,[s[i]])
         }else{
-         m.set(sorted, [...m.get(sorted),s[i]])
+            m.get(sorted).push(s[i])
         }
     }
     return [...m.values()]
