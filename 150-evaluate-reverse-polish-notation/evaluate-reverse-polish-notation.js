@@ -1,8 +1,8 @@
 /**
- * @param {string[]} arr
+ * @param {string[]} tokens
  * @return {number}
  */
-var evalRPN = function(arr) {
+var evalRPN = function(tokens) {
      let stack = [];
     const map = {
         "+": (a,b) => (b+a),
@@ -10,14 +10,14 @@ var evalRPN = function(arr) {
         "-": (a,b) => (b-a),
         "/": (a,b) => Math.trunc(b/a),
     };
-        for(let i=0; i < arr.length; i++){
-            if(map[arr[i]]) {
+        for(let i=0; i < tokens.length; i++){
+            if(map[tokens[i]]) {
                 let a = stack.pop();
                 let b = stack.pop();
-                let ans = map[arr[i]](+a,+b);
+                let ans = map[tokens[i]](+a,+b);
                 stack.push(ans);
             } else {
-                stack.push(arr[i]) 
+                stack.push(tokens[i]) 
             }
         }
     return Number(stack.pop());
