@@ -20,7 +20,6 @@ MyStack.prototype.pop = function () {
     for (let i = 0; i < n; i++) {
         this.q2.push(this.q1.shift())
     }
-    console.log("q1",this.q1)
     const el = this.q1.shift()
     const temp = this.q1
     this.q1 = this.q2
@@ -36,14 +35,11 @@ MyStack.prototype.top = function () {
     for (let i = 0; i < n; i++) {
         this.q2.push(this.q1.shift())
     }
-   console.log("q1",this.q1)
     const el = this.q1.shift()
-    console.log("el before",el)
     this.q2.push(el)
     const temp = this.q1
     this.q1 = this.q2
     this.q2 = temp  
-    console.log("el after",el)
     return el
 };
 
