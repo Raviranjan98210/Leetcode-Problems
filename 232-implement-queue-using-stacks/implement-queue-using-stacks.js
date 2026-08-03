@@ -20,41 +20,31 @@ MyQueue.prototype.push = function (x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function () {
-    const n = this.s1.length
-    console.log(this.s1, "-- s1")
-    for (let i = 0; i < n - 1; i++) {
-        this.s2.push(this.s1.pop())
+    if (this.s2.length === 0) {
+        while (this.s1.length) {
+            this.s2.push(this.s1.pop())
+        }
     }
-    const f = this.s1.pop()
-    const n1 = this.s2.length
-    for (let j = 0; j < n1; j++) {
-        this.s1.push(this.s2.pop())
-    }
-    return f
+    return this.s2.pop()
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.peek = function () {
-    const n = this.s1.length
-    for (let i = 0; i < n - 1; i++) {
-        this.s2.push(this.s1.pop())
+     if (this.s2.length === 0) {
+        while (this.s1.length) {
+            this.s2.push(this.s1.pop())
+        }
     }
-    const f = this.s1.pop()
-    this.s1.push(f)
-    const n1 = this.s2.length
-    for (let j = 0; j < n1; j++) {
-        this.s1.push(this.s2.pop())
-    }
-    return f
+    return this.s2[this.s2.length-1]
 };
 
 /**
  * @return {boolean}
  */
 MyQueue.prototype.empty = function () {
-  return  this.s1.length === 0 
+    return this.s1.length ===0 && this.s2.length===0
 };
 
 /** 
