@@ -9,11 +9,11 @@ var findMissingElements = function(nums) {
         min = Math.min(nums[i],min)
         max = Math.max(nums[i],max)
     }
+    const s = new Set(nums)
 
     const result = []
     for(let j=min+1; j< max; j++){
-        if(!nums.includes(j))result.push(j)
+        if(!s.has(j))result.push(j)
     }
-    result.sort((a,b)=> a-b)
     return result
 };
