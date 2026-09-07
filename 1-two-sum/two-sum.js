@@ -4,13 +4,17 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    // Brute Force
-    const l= nums.length;
-    for(let i=0;i<l; i++) {
-      for(let j = i+1;j<l;j++) {
-         if(nums[i]+nums[j] === target) {
-             return [i,j]
-         } 
-      }
+    let left = 0
+    let right = nums.length-1
+    let map  = new Map()
+    for(let i=0; i<nums.length; i++){
+        map.set(nums[i],i)
+    }
+
+    for(let i=0; i< nums.length;i++){
+        let n = target- nums[i]
+        if(map.has(n) && map.get(n)!==i){
+            return [i,map.get(n)]
+        }
     }
 };
