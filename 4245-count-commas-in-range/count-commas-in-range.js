@@ -4,9 +4,6 @@
  */
 var countCommas = function (n) {
     if (n < 1000) return 0
-    let count = 0
-    for (let i = 1000; i <= n; i++) {
-        count++
-    }
-    return count
+    return n-999
+
 };
