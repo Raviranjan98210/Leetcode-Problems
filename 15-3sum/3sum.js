@@ -3,116 +3,47 @@
  * @return {number[][]}
  */
 var threeSum = function (nums) {
-    // Brute force approach
-    //  const set = new Set()
-    //     const n = nums.length
-    //     for(let i=0; i<n; i++) {
-    //         for(let j=i+1;j<n;j++) {
-    //             for(let k=j+1;k<n;k++) {
-    //                 if(nums[i]+nums[j]+nums[k]===0){
-    //                     const temp = [nums[i],nums[j],nums[k]]
-    //                     temp.sort((a,b)=>a-b)
-    //                     set.add(JSON.stringify(temp))
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     const result = []
-    //     for(let item of set){
-    //         result.push(JSON.parse(item))
-    //     }
-    //     return result;
 
-    // Better Solutiong using hasing technique.
+    // nums[i] +nums[j] + nums[k] = 0
 
-    // const n = nums.length;
-    // const result = [];
-    // const set = new Set();
-    // for (let i = 0; i < n; i++) {
-    //     const map = new Map();
-    //     for (let j = i + 1; j < n; j++) {
-    //         // Intitution:  i+j+k = 0 i.e k = -(i+j)
-    //         //  see if k is in the map then we have got the triplets
-    //         // Note: we are putting the value between i and j only so the curretn element 
-    //         // doesn't not gets considered as k, for that wheneve i is changing we are resetting 
-    //         // the value map
-    //         const k = -(nums[i] + nums[j]);
-    //         if (map.has(k)) {
-    //             const temp = [nums[i], nums[j], k]
-    //             temp.sort((a, b) => a - b)
-    //             set.add(JSON.stringify(temp))
-    //         }
-    //         if(!map.has(nums[j])){
-    //             map.set(nums[j], j)
-    //         }
-           
-    //     }
-    // }
-    // for (let item of set) {
-    //     result.push(JSON.parse(item))
-    // }
-    // return result;
+    // nums[j] + nums[k] = - nums[i]
 
-    // let st = new Set();
-    // const n = nums.length;
-    // let ans = [];
-    // // check if all zero then return [0,0,0]
-    // let isZero = true
-    // for(let i=0;i<n;i++) {
-    //     if(nums[i] !==0){
-    //         isZero = false
-    //         break;
-    //     }
-    // }
-    // if(isZero) return [[0,0,0]];
-    // for (let i = 0; i < n; i++) {
-    //     let hashset = new Set();
-    //     for (let j = i + 1; j < n; j++) {
-    //         //Calculate the 3rd element:
-    //         let third = -(nums[i] + nums[j]);
+    //  nums[j] + nums[k] -> this we can get by two sum 
+    // [-1,0,1,2,-1,-4]
 
-    //         //Find the element in the set:
-    //         if (hashset.has(third)) {
-    //             let temp = [nums[i], nums[j], third];
-    //             temp.sort((a, b) => a - b);
-    //             ans.push(temp);
-    //         }
-    //         hashset.add(nums[j]);
-    //     }
-    // }
+    // [-4,-1,-1,0,1,2]
 
-    // //store the set in the answer:
-    // let set  = new Set(ans.map(JSON.stringify));
-    // ans = Array.from(set).map(JSON.parse);
-    // return ans;
 
-    // Optimal solution using pointers
-
-    const n = nums.length;
-
+    let n = nums.length
     nums.sort((a,b)=> a-b)
-    console.log(nums)
-    let res = []
-    for(let left=0;left<n;left++){
-        if(left >0 && nums[left] === nums[left-1]) continue;
-        console.log(nums[left],left)
-         let  mid = left+1;
-         let  last = n-1;
-        while(mid<last){
-            let sum = nums[left]+nums[mid]+nums[last]
-            if(sum<0){
-                mid++;
-            }else if(sum>0){
-                last--;
-            }else {
-                res.push([nums[left],nums[mid],nums[last]])
-                mid++;
-                last--;
-                while(mid<last && nums[mid] === nums[mid-1]) mid++;
-                while(mid<last && nums[last] === nums[last+1]) last--;
+    const result = []
+    for (let i = 0; i < n - 2; i++) {
+        if(i>0 && nums[i]===nums[i-1]){
+            continue
+        }
+        let target = -1 * nums[i]
+        let left = i+1
+        let right = n-1
+
+        while(left < right){
+            let sum = nums[left]+nums[right]
+            if(sum === target){
+              result.push([nums[i],nums[left],nums[right]])  
+                left++
+                right--
+                while(nums[left]===nums[left-1]){
+                    left++
+                }
+                while(nums[right]===nums[right+1]){
+                    right--
+                }
+            }else if(sum<target){
+                left++
+            }else{
+                right--
             }
         }
+
     }
-    // console.log(res)
-    return res;
-}
+    return result
+};
