@@ -5,7 +5,7 @@
 var lengthOfLongestSubstring = function(s) {
     let low = 0;
     let map = new Map()
-    let max = -Infinity
+    let max = 0
     for(let high=0; high< s.length; high++){
         map.set(s[high],(map.get(s[high]) || 0)+1)
         /* Check the size, and map size if both are equal that means there is no repeating charater in that widow so it can be considered as lognest substring without repeating the character
@@ -20,5 +20,5 @@ var lengthOfLongestSubstring = function(s) {
         }
         max = Math.max(high-low+1,max)
     }
-    return max === -Infinity ? 0: max
+    return max
 };
